@@ -1,0 +1,26 @@
+x-app: &app
+  build:
+    context: .
+    dockerfile: Dockerfile
+  environment:
+    - CACHE_TTL=${CACHE_TTL}
+    - MAX_RETRIES=${MAX_RETRIES}
+    - MAX_CACHE_SIZE=${MAX_CACHE_SIZE}
+    - REQUEST_TIMEOUT=${REQUEST_TIMEOUT}
+    - LOG_LEVEL=${LOG_LEVEL}
+    - WTRR_API_URL=${WTRR_API_URL}
+    - ORIGIN_SERVER_URL=${ORIGIN_SERVER_URL}
+
+
+services:
+  proxy:
+    <<: *app
+    ports:
+      - "3000:3000"
+    command: "uvicorn src.app.proxy.app:app --port 3000 --host 0.0.0.0"
+
+  origin:
+    <<: *app
+    ports:
+      - "3001:3001"
+    command: "uvicorn src.app.origin.app:app --port 3001 --host 0.0.0.0"

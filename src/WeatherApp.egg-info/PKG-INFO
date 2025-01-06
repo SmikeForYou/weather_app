@@ -1,0 +1,105 @@
+Metadata-Version: 2.1
+Name: WeatherApp
+Version: 1.0.0
+Summary: WeatherApp is a simple Python library for accessing weather data from wtrr.in API.
+Author-email: Anatolii Savran <anatoly.asc@gmail.com>
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp==3.11.11
+Requires-Dist: annotated-types==0.7.0
+Requires-Dist: click==8.1.8
+Requires-Dist: fastapi==0.115.6
+Requires-Dist: h11===0.12.0
+Requires-Dist: idna==3.10
+Requires-Dist: pydantic==2.10.4
+Requires-Dist: pydantic_core==2.27.2
+Requires-Dist: sniffio==1.3.1
+Requires-Dist: starlette==0.41.3
+Requires-Dist: typing_extensions==4.12.2
+Requires-Dist: uvicorn==0.34.0
+Requires-Dist: dependency-injector==4.44.0
+Provides-Extra: dev
+Requires-Dist: black==21.12b0; extra == "dev"
+Requires-Dist: flake8==4.0.1; extra == "dev"
+Requires-Dist: isort==5.10.1; extra == "dev"
+Requires-Dist: mypy==0.910; extra == "dev"
+Requires-Dist: ruff==0.1.0; extra == "dev"
+Requires-Dist: pre-commit==2.15.0; extra == "dev"
+Provides-Extra: test
+Requires-Dist: httpx==0.21.0; extra == "test"
+Requires-Dist: pytest==7.0.1; extra == "test"
+Requires-Dist: pytest-asyncio==0.17.0; extra == "test"
+Requires-Dist: pytest-cov==3.0.0; extra == "test"
+Requires-Dist: pytest-mock==3.6.1; extra == "test"
+Requires-Dist: requests==2.26.0; extra == "test"
+
+# Weather App
+This is a simple weather app that uses wtrr.in API to get the weather of a city. It is built using Python, FastAPI, and Docker.
+
+## Prerequisites
+- Docker
+- Docker Compose
+- Python 3.12
+- Pip
+
+## Install and run
+1. Clone the repository
+```bash 
+git clone
+```
+2. Change directory to the project folder
+```bash
+cd weather-app
+```
+3. Build the Docker image
+```bash
+cp .env.example .env
+```
+4. Build the Docker image
+```bash
+docker-compose build
+```
+5. Run the Docker container
+```bash
+docker-compose up
+```
+
+## Development and contribution
+
+1. Install [dev] dependencies
+```bash
+pip install -e .[dev]
+```
+
+2. Install pre-commit hooks
+```bash
+pre-commit install
+```
+
+
+## Run tests
+1. Install test dependencies
+```bash
+pip install -e .[test]
+```
+
+2. Run tests
+```bash
+pytest
+```
+
+
+### Description
+
+This is a simple weather app that uses wtrr.in 
+API to get the weather of a city. It is built using Python, 
+FastAPI, and Docker.
+
+- I used FastAPI because it is a modern, fast (high-performance),
+- Also I've used dependency injector framework because it perfectly matches to FastAPI and it is a powerful tool for managing and injecting dependencies in Python.
+- Considering that the app is small so i've used monorepo structure to keep the code organized.
+- I've used Docker to containerize the app and make it easy to run and deploy.
+- Also most of things are simplified and abstracted because of test assignment nature.
+  - Config may be injected with DI framework default tools but i've used singleton pattern to keep it simple.
+  - Exception handling is simplified and not coverage all cases.
+  - Logging is simplified and not cover all cases.
